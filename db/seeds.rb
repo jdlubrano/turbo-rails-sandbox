@@ -1,9 +1,9 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+work_inbox = Inbox.create_or_find_by!(name: "Work")
+
+if work_inbox.messages.none?
+  1.upto(5) do |i|
+    work_inbox.messages.create!(title: "Message #{i}", body: "This is the content of message ##{i}")
+  end
+end
+
+personal_inbox = Inbox.create_or_find_by!(name: "Personal")
