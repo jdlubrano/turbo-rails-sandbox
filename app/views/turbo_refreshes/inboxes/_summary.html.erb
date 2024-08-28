@@ -1,0 +1,17 @@
+<%# locals(inbox:) %>
+
+<%= turbo_stream_from(inbox) %>
+
+<div id="<%= dom_id(inbox) %>" class="flex flex-wrap">
+  <p class="font-bold basis-full text-lg mb-4">
+    <%= inbox.name %>
+  </p>
+  <ul class="basis-full mb-2">
+    <li>
+      Unread messages: <%= inbox.messages.unread.size %>
+    </li>
+    <li>
+      Total messages: <%= inbox.messages.size %>
+    </li>
+  </ul>
+</div>
