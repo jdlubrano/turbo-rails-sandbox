@@ -17,7 +17,11 @@ class TurboActions::MessagesController < ApplicationController
 
       format.turbo_stream do
         @inbox.broadcast_update_to(@inbox, partial: "turbo_actions/inboxes/summary")
-        render turbo_stream: turbo_stream.replace(@message)
+
+        render turbo_stream: [
+          turbo_stream.replace([@inbox, :unread_messages], partial: "turbo_actions/inboxes/messages", locals: { inbox: @inbox, messages: @inbox.messages.unread, scope: :unread }),
+          turbo_stream.replace([@inbox, :read_messages], partial: "turbo_actions/inboxes/messages", locals: { inbox: @inbox, messages: @inbox.messages.read, scope: :read })
+        ]
       end
     end
   end
