@@ -1,0 +1,17 @@
+<h1 class="font-bold md:text-4xl mb-4">Experiments</h1>
+
+<%
+  experiments = {
+    "Inboxes with Turbo disabled"    => [:turbo_actions, :inboxes, turbo_enabled: false],
+    "Inboxes with Turbo 7 Actions"   => [:turbo_actions, :inboxes],
+    "Inboxes with Turbo 8 Refreshes" => [:turbo_refreshes, :inboxes]
+  }
+%>
+
+<ul>
+  <% experiments.each do |text, href| %>
+    <li class="mb-4">
+      <%= link_to text, href, class: "text-sky-600 hover:underline" %>
+    </li>
+  <% end %>
+</ul>
