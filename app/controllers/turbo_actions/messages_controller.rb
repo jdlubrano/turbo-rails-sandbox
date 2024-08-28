@@ -8,11 +8,11 @@ class TurboActions::MessagesController < ApplicationController
       format.html do
         if @message.errors.empty?
           flash.notice = "Message #{@message.id} updated!"
-          redirect_to [:turbo_actions, @message.inbox]
         else
           flash.alert = "Message #{@message.id} could not be updated: #{@message.errors.full_messages.to_sentence}"
-          render "turbo_actions/inbox"
         end
+
+        redirect_to [:turbo_actions, @message.inbox, turbo_enabled: false]
       end
 
       format.turbo_stream do

@@ -8,11 +8,14 @@
   tab_class = "w-24 text-center p-2 rounded-sm mr-2"
   active_tab_class = "#{tab_class} text-white bg-blue-500 hover:bg-blue-400"
   inactive_tab_class = "#{tab_class} bg-slate-200 hover:bg-slate-100"
+  turbo_enabled = params[:turbo_enabled].to_s != "false"
 %>
 
 <div class="flex mt-4">
-  <%= link_to "Unread", [:turbo_actions, @inbox, messages_scope: :unread], class: @messages_scope.eql?(:read) ? inactive_tab_class : active_tab_class %>
-  <%= link_to "Read", [:turbo_actions, @inbox, messages_scope: :read], class: @messages_scope.eql?(:read) ? active_tab_class : inactive_tab_class %>
+  <%= link_to "Unread", [:turbo_actions, @inbox, messages_scope: :unread, turbo_enabled: turbo_enabled], class: @messages_scope.eql?(:read) ? inactive_tab_class : active_tab_class %>
+  <%= link_to "Read", [:turbo_actions, @inbox, messages_scope: :read, turbo_enabled: turbo_enabled], class: @messages_scope.eql?(:read) ? active_tab_class : inactive_tab_class %>
 </div>
 
-<%= render "messages", inbox: @inbox, messages: @messages, scope: @messages_scope %>
+<div data-turbo="<%= turbo_enabled %>">
+  <%= render "messages", inbox: @inbox, messages: @messages, scope: @messages_scope %>
+</div>
