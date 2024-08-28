@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   resources :experiments, only: :index
 
   namespace :turbo_actions do
-    resources :inboxes, except: %i[new create destroy]
+    resources :inboxes, only: %i[index show]
     resources :messages, only: :update
   end
 
   namespace :turbo_refreshes do
-    resources :inboxes, except: %i[new create destroy]
+    resources :inboxes, only: %i[index show]
     resources :messages, only: :update
   end
 
