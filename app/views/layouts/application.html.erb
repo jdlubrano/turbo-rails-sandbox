@@ -21,6 +21,14 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5">
+      <% if flash.notice.present? %>
+        <p class="bg-green-200 p-4 mb-4 rounded-md shadow-sm"><%= flash.notice %></p>
+      <% end %>
+
+      <% if flash.alert.present? %>
+        <p class="bg-red-200 p-4 mb-4 rounded-md shadow-sm"><%= flash.alert %></p>
+      <% end %>
+
       <%= yield %>
     </main>
   </body>

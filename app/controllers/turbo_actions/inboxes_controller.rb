@@ -4,6 +4,7 @@ class TurboActions::InboxesController < ApplicationController
   end
 
   def show
+    @inbox = Inbox.find(params[:id])
   end
 
   def edit

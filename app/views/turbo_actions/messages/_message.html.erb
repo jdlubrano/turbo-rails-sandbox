@@ -1,0 +1,14 @@
+<%# locals(message:) %>
+
+<% button_class = "bg-blue-500 hover:bg-blue-400 text-white w-full md:w-1/6 p-1 rounded-md shadow-sm" %>
+
+<div id="<%= dom_id(message) %>">
+  <h4 class="font-bold mb-2"><%= message.title %></h4>
+  <p class="font-mono mb-4"><%= message.body %></p>
+
+  <% if message.read_at? %>
+    <%= button_to "Mark as Unread", [:turbo_actions, message], class: button_class, method: :patch, params: { message: { read: false } } %>
+  <% else %>
+    <%= button_to "Mark as Read", [:turbo_actions, message], class: button_class, method: :patch, params: { message: { read: true } } %>
+  <% end %>
+</div>

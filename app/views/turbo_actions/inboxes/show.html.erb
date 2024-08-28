@@ -1,4 +1,14 @@
-<div>
-  <h1 class="font-bold text-4xl">TurboActions::Inboxes#show</h1>
-  <p>Find me in app/views/turbo_actions/inboxes/show.html.erb</p>
+
+<p class="mb-4">
+  <%= link_to sanitize("&larr; Back to inboxes"), [:turbo_actions, :inboxes], class: "text-sky-600 hover:underline" %>
+</p>
+
+<%= render "summary", inbox: @inbox %>
+
+<div class="flex flex-wrap">
+  <% @inbox.messages.ordered.each do |message| %>
+    <div class="basis-full border-2 rounded-sm mb-4 p-4">
+      <%= render message %>
+    </div>
+  <% end %>
 </div>

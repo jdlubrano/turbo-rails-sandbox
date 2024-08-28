@@ -1,5 +1,9 @@
-<div class="flex flex-wrap">
-  <p class="basis-full text-lg mb-4">
+<%# locals(inbox:) %>
+
+<%= turbo_stream_from(inbox) %>
+
+<div id="<%= dom_id(inbox) %>" class="flex flex-wrap">
+  <p class="font-bold basis-full text-lg mb-4">
     <%= inbox.name %>
   </p>
   <ul class="basis-full mb-2">
@@ -10,5 +14,4 @@
       Total messages: <%= inbox.messages.size %>
     </li>
   </ul>
-  <%= link_to "View", [:turbo_actions, inbox], class: "text-sky-600 hover:underline" %>
 </div>

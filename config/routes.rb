@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :turbo_actions do
     resources :inboxes, except: %i[new create destroy]
+    resources :messages, only: :update
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
